@@ -1,6 +1,6 @@
 //Money 
 
-var money = 0;
+var money = 10000;
 var timer = window.setInterval(function () { tick() }, 1000);
 
 function gatherMoney() {
@@ -14,15 +14,17 @@ function tick() {
     money = money + (building1Qty * building1PerSec);
 }
 
+
+
 //Buildings
 
 var building1Name = "Novice Forge"
-var building1Cost = 50;
+var building1Cost = 100;
 var building1PerSec = 10;
 var building1Qty = 0;
 
 var building2Name = "Adept Forge"
-var building2Cost = 100;
+var building2Cost = 1000;
 var building2PerSec = 50;
 var building2Qty = 0;
 
@@ -34,6 +36,7 @@ function buyNoviceForge() {
         building1Qty = building1Qty + 1;
         document.getElementById("money").innerHTML = money;
         document.getElementById("building1Qty").innerHTML = building1Qty;
+        console.log("building purchased. building bought: " + building1Qty)
     }
 }
 
@@ -47,3 +50,8 @@ function buyAdeptForge() {
         document.getElementById("building2Qty").innerHTML = building2Qty;
     }
 }
+
+
+
+//Text Effects
+

@@ -1,7 +1,7 @@
 #header {
 	font-size: 50px;
 	font-weight: bold;
-	color: red;
+	color: black;
 	text-align: center;
 	margin-top: 50px;
 	font-family: 'Staatliches' ;
@@ -9,20 +9,20 @@
 
 #stats {
 	text-align: center;
-	font-size: 12px;
+	font-size: 20px;
 	font-weight: normal;
 	margin-top: 20px;
 	color: black;
 }
 
 .block {
-	font-size: 12px;
+	font-size: 25px;
 	font-weight: normal;
 	color: black;
 	text-align: center;
 	margin-top: 25px;
 	border-style: solid;
-	border-width: 1px;
+	border-width: 0px;
 	border-color: #333333;
 	display: inline-block;
 	width: 45%;
@@ -49,4 +49,22 @@
 
 #gametitle {
 	font-size: 50px;
+}
+
+.button1 {
+		background-color: lightslategray;
+		border: 2px solid  black;
+		color: black;
+		padding: 14px 40px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		width: 300px;
+}
+
+.label {
+	font-size: 25px;
 }

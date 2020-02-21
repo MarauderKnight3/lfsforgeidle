@@ -6,25 +6,31 @@
     <link rel="stylesheet" type="text/css" href="incremental.css">
     <script src="incremental.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
     <div id="page">
         <div id="header">
             <div id="gametitle">
-                Forger
+                Waste Time Making Swords
+            </div>
+            <div id="gamedesc">
+                Waste your time making swords and buying forges that dont do anything. -Arki
             </div>
             <div id="content">
                 <div id="stats" class="block">
                     </br>
-                    <div class="label">Money</div>
+                    <div class="label">Lunar Coins</div>
                     <div id="money" class="label">0</div>
                 </div>
+            <br>
                 <div id="clickables" class="block">
-                    Clickables Here
+                    Make Swords
                     <br/>
-                    <input type="button" value="Click Me" onClick="gatherMoney();">
+                    <input type="button" onClick="gatherMoney();" class="button1">
                 </div>
+            <br>
                 <div id="building" class="block">
                     <div id="building1">
                         <input type="button" value="Novice Forge" onClick="buyNoviceForge();">
