@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Basic Incremental Game</title>
+    <link rel="stylesheet" type="text/css" href="incremental.css">
+    <script src="incremental.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="page">
+        <div id="header">
+            <div id="gametitle">
+                Forger
+            </div>
+            <div id="content">
+                <div id="stats" class="block">
+                    </br>
+                    <div class="label">Money</div>
+                    <div id="money" class="label">0</div>
+                </div>
+                <div id="clickables" class="block">
+                    Clickables Here
+                    <br/>
+                    <input type="button" value="Click Me" onClick="gatherMoney();">
+                </div>
+                <div id="building" class="block">
+                    <div id="building1">
+                        <input type="button" value="Novice Forge" onClick="buyNoviceForge();">
+                    </div>
+                    <div id="building1Cost">
+                        Cost: 50
+                    </div>
+                    <div id="building1PerSec">
+                        1
+                    </div>
+                    <div id="building1Qty">
+                        0
+                    </div>
+                    <div id="building2">
+                        <input type="button" value="Adept Forge" onClick="buyAdeptForge();">
+                    </div>
+                    <div id="building2Cost">
+                        Cost: 100
+                    </div>
+                    <div id="building2PerSec">
+                        50
+                    </div>
+                    <div id="building2Qty">
+                        0
+                    </div>
+                </div>
+
+            </div>
+            <div id="upgrades" class="block">
+                Upgrades Here
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
