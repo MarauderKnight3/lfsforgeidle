@@ -7,4 +7,4 @@ Keep in mind this is my first HTML5 based game so it aint gonna be perfect.
 
 //Updates and Fixes
 
-No New Fixes Or Updates
+Overhaul by MarauderKnight3 2/24/2020
