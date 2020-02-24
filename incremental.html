@@ -6,63 +6,143 @@
     <link rel="stylesheet" type="text/css" href="incremental.css">
     <script src="incremental.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body onload="initialize();">
     <div id="page">
-        <div id="header">
-            <div id="gametitle">
-                Waste Time Making Swords
-            </div>
-            <div id="gamedesc">
-                Waste your time making swords and buying forges that dont do anything. -Arki
-            </div>
-            <div id="content">
-                <div id="stats" class="block">
-                    </br>
-                    <div class="label">Lunar Coins</div>
-                    <div id="money" class="label">0</div>
-                </div>
-            <br>
-                <div id="clickables" class="block">
-                    Make Swords
-                    <br/>
-                    <input type="button" onClick="gatherMoney();" class="button1">
-                </div>
-            <br>
-                <div id="building" class="block">
-                    <div id="building1">
-                        <input type="button" value="Novice Forge" onClick="buyNoviceForge();">
-                    </div>
-                    <div id="building1Cost">
-                        Cost: 50
-                    </div>
-                    <div id="building1PerSec">
-                        1
-                    </div>
-                    <div id="building1Qty">
-                        0
-                    </div>
-                    <div id="building2">
-                        <input type="button" value="Adept Forge" onClick="buyAdeptForge();">
-                    </div>
-                    <div id="building2Cost">
-                        Cost: 100
-                    </div>
-                    <div id="building2PerSec">
-                        50
-                    </div>
-                    <div id="building2Qty">
-                        0
-                    </div>
-                </div>
-
-            </div>
-            <div id="upgrades" class="block">
-                Upgrades Here
-            </div>
-        </div>
+        <h1 id="displayTitle">Waste Time Making Swords</h1>
+        <h1 class="general">Waste your time making swords and buying forges
+            that
+            dont do anything. -Arki</h1>
+        <table style="margin: auto;">
+            <tr>
+                <td class="general">Lunar Coins: </td>
+                <td id="money" class="number">error</td>
+            </tr>
+            <tr>
+                <td class="general">Gross Income All Time: </td>
+                <td id="earnedSoFar" class="number">error</td>
+            </tr>
+            <tr>
+                <td class="general">Coins Per Second (CPS): </td>
+                <td id="entireCPS" class="number">error</td>
+            </tr>
+        </table>
+        <p onclick="javascript: gatherMoney();" class="buyButton" style="margin: auto;">Gather</p>
+        <p class="object" style="text-align: center;">Investments</p>
+        <table style="margin: auto;">
+            <tr>
+                <td>Amount to buy:</td>
+                <td><input type="text" id="amountToBuy" value="1"></td>
+            </tr>
+        </table>
+        <table
+            style="margin: auto; margin-bottom: 10px; width:75%; border-style: solid; border-width: 3px; border-color: #1e1d44;">
+            <!--To add another building, you MUST make a set replacing the number at the beginning of each ID with the next number. Also see the JS to specify its stats. E.g. 68name turns into 69name, and so on.-->
+            <!-- Forge 0 -->
+            <tr>
+                <td id="0name" style="width: 200px;">Name</td>
+                <td onclick="buyAcquisition(0,1)" class="buyButton">Buy</td>
+                <td id="0cost" class="number">(Costs error)</td>
+            </tr>
+            <tr>
+                <td>Amount owned:</td>
+                <td id="0owned" class="number">error</td>
+            </tr>
+            <tr>
+                <td>CPS / Building:</td>
+                <td id="0CPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Total CPS:</td>
+                <td id="0totalCPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Earned so far:</td>
+                <td id="0ESF" class="number">error</td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+            <!-- Forge 1 -->
+            <tr>
+                <td id="1name">Name</td>
+                <td onclick="buyAcquisition(1,1)" class="buyButton">Buy</td>
+                <td id="1cost" class="number">(Costs error)</td>
+            </tr>
+            <tr>
+                <td>Amount owned:</td>
+                <td id="1owned" class="number">error</td>
+            </tr>
+            <tr>
+                <td>CPS / Building:</td>
+                <td id="1CPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Total CPS:</td>
+                <td id="1totalCPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Earned so far:</td>
+                <td id="1ESF" class="number">error</td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+            <!-- Forge 2 -->
+            <tr>
+                <td id="2name">Name</td>
+                <td onclick="buyAcquisition(2,1)" class="buyButton">Buy</td>
+                <td id="2cost" class="number">(Costs error)</td>
+            </tr>
+            <tr>
+                <td>Amount owned:</td>
+                <td id="2owned" class="number">error</td>
+            </tr>
+            <tr>
+                <td>CPS / Building:</td>
+                <td id="2CPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Total CPS:</td>
+                <td id="2totalCPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Earned so far:</td>
+                <td id="2ESF" class="number">error</td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+            <!-- Forge 3 -->
+            <tr>
+                <td id="3name">Name</td>
+                <td onclick="buyAcquisition(3,1)" class="buyButton">Buy</td>
+                <td id="3cost" class="number">(Costs error)</td>
+            </tr>
+            <tr>
+                <td>Amount owned:</td>
+                <td id="3owned" class="number">error</td>
+            </tr>
+            <tr>
+                <td>CPS / Building:</td>
+                <td id="3CPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Total CPS:</td>
+                <td id="3totalCPS" class="number">error</td>
+            </tr>
+            <tr>
+                <td>Earned so far:</td>
+                <td id="3ESF" class="number">error</td>
+            </tr>
+        </table>
     </div>
 </body>
 
