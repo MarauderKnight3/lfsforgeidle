@@ -66,7 +66,7 @@ function getAmountToBuy() {
     }
 }
 
-function findAmountCanBuy(ID, amount, would) {
+function findAmountCanBuy(ID, amount, would, andBuy = false) {
     var amountSoFar = 0;
     var speculateOwned = buildings[ID].owned;
     var monie = Math.round(money);
@@ -88,6 +88,10 @@ function findAmountCanBuy(ID, amount, would) {
             speculateOwned++;
             amountSoFar++;
         }
+    }
+    if (!would && andBuy) {
+        money -= totalCost;
+        buildings[ID].owned += amountSoFar;
     }
     return [amountSoFar, totalCost];
 }
@@ -120,7 +124,6 @@ function buyAcquisition(ID) {
     if (getAmountToBuy(ID, getAmountToBuy()) == 1) {
         document.getElementById("amountToBuy").value = "1";
     }
-    buildings[ID].owned += findAmountCanBuy(ID, getAmountToBuy(), false)[0];
-    money -= findAmountCanBuy(ID, getAmountToBuy(), false)[1];
+    findAmountCanBuy(ID, getAmountToBuy(), false, true);
     updateDisplay();
 }
