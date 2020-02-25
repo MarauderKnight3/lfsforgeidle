@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="incremental.css">
     <script src="incremental.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body onload="initialize();">
@@ -33,7 +34,7 @@
         <table style="margin: auto;">
             <tr>
                 <td>Amount to buy:</td>
-                <td><input type="text" id="amountToBuy" value="1"></td>
+                <td><input type="text" id="amountToBuy" placeholder="Amount..." value="1"></td>
             </tr>
         </table>
         <table
@@ -42,7 +43,7 @@
             <!-- Forge 0 -->
             <tr>
                 <td id="0name" style="width: 200px;">Name</td>
-                <td onclick="buyAcquisition(0,1)" class="buyButton">Buy</td>
+                <td onclick="buyAcquisition(0)" class="buyButton">Buy</td>
                 <td id="0cost" class="number">(Costs error)</td>
             </tr>
             <tr>
@@ -69,7 +70,7 @@
             <!-- Forge 1 -->
             <tr>
                 <td id="1name">Name</td>
-                <td onclick="buyAcquisition(1,1)" class="buyButton">Buy</td>
+                <td onclick="buyAcquisition(1)" class="buyButton">Buy</td>
                 <td id="1cost" class="number">(Costs error)</td>
             </tr>
             <tr>
@@ -96,7 +97,7 @@
             <!-- Forge 2 -->
             <tr>
                 <td id="2name">Name</td>
-                <td onclick="buyAcquisition(2,1)" class="buyButton">Buy</td>
+                <td onclick="buyAcquisition(2)" class="buyButton">Buy</td>
                 <td id="2cost" class="number">(Costs error)</td>
             </tr>
             <tr>
@@ -123,7 +124,7 @@
             <!-- Forge 3 -->
             <tr>
                 <td id="3name">Name</td>
-                <td onclick="buyAcquisition(3,1)" class="buyButton">Buy</td>
+                <td onclick="buyAcquisition(3)" class="buyButton">Buy</td>
                 <td id="3cost" class="number">(Costs error)</td>
             </tr>
             <tr>
