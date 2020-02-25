@@ -2,7 +2,6 @@ var iteration = window.setInterval(function () {
     tick()
 }, 40);
 var money = 0;
-money = parseFloat(money);
 var earnedSoFar = 0;
 var entireCPS = 0;
 
@@ -44,12 +43,53 @@ function updateDisplay() {
     document.getElementById("entireCPS").innerHTML = correctRound(entireCPS);
     for (i = 0; i <= buildings.length - 1; i++) {
         document.getElementById(i + "name").innerHTML = buildings[i].name;
-        document.getElementById(i + "cost").innerHTML = "(Costs " + findCost(i) + ")";
+        document.getElementById(i + "cost").innerHTML = "(Costs " + findAmountCanBuy(parseInt(i), getAmountToBuy(), true)[1] + " for " + findAmountCanBuy(parseInt(i), getAmountToBuy(), true)[0] + ")";
         document.getElementById(i + "owned").innerHTML = buildings[i].owned;
         document.getElementById(i + "CPS").innerHTML = buildings[i].CPS;
         document.getElementById(i + "totalCPS").innerHTML = correctRound(buildings[i].CPS * buildings[i].owned);
         document.getElementById(i + "ESF").innerHTML = Math.round(buildings[i].ESF);
     }
+}
+
+function findCost(ID) {
+    return buildings[ID].cost + Math.ceil((0.15 * Math.pow(buildings[ID].owned, 2)) * (buildings[ID].cost / 8));
+}
+
+function getAmountToBuy() {
+    if (!document.getElementById("amountToBuy").value) {
+        return 1;
+    }
+    if (isNaN(parseInt(document.getElementById("amountToBuy").value))) {
+        return 1;
+    } else {
+        return parseInt(document.getElementById("amountToBuy").value)
+    }
+}
+
+function findAmountCanBuy(ID, amount, would) {
+    var amountSoFar = 0;
+    var speculateOwned = buildings[ID].owned;
+    var monie = Math.round(money);
+    var totalCost = 0;
+    if (!would) {
+        for (j = amount; j > 0; j--) {
+            if (monie - (buildings[ID].cost + Math.ceil((0.15 * Math.pow(speculateOwned, 2)) * (buildings[ID].cost / 8))) >= 0) {
+                monie -= buildings[ID].cost + Math.ceil((0.15 * Math.pow(speculateOwned, 2)) * (buildings[ID].cost / 8));
+                totalCost += buildings[ID].cost + Math.ceil((0.15 * Math.pow(speculateOwned, 2)) * (buildings[ID].cost / 8));
+                speculateOwned++;
+                amountSoFar++;
+            } else {
+                break;
+            }
+        }
+    } else {
+        for (j = amount; j > 0; j--) {
+            totalCost += buildings[ID].cost + Math.ceil((0.15 * Math.pow(speculateOwned, 2)) * (buildings[ID].cost / 8));
+            speculateOwned++;
+            amountSoFar++;
+        }
+    }
+    return [amountSoFar, totalCost];
 }
 
 function initialize() {
@@ -65,6 +105,8 @@ function tick() {
         entireCPS += buildings[i].owned * buildings[i].CPS;
         buildings[i].ESF += buildings[i].owned * buildings[i].CPS / 25;
     }
+    if (getAmountToBuy() > 100000)
+        document.getElementById("amountToBuy").value = "1000";
     updateDisplay();
 }
 
@@ -74,15 +116,11 @@ function gatherMoney() {
     updateDisplay();
 }
 
-function findCost(ID) {
-    return buildings[ID].cost + Math.ceil((0.15 * Math.pow(buildings[ID].owned, 2)) * (buildings[ID].cost / 8));
-}
-
-function buyAcquisition(ID, amount) {
-    var monie = Math.round(money)
-    if (monie - findCost(ID) * amount >= 0) {
-        money -= findCost(ID) * amount;
-        buildings[ID].owned += amount;
+function buyAcquisition(ID) {
+    if (getAmountToBuy(ID, getAmountToBuy()) == 1) {
+        document.getElementById("amountToBuy").value = "1";
     }
+    buildings[ID].owned += findAmountCanBuy(ID, getAmountToBuy(), false)[0];
+    money -= findAmountCanBuy(ID, getAmountToBuy(), false)[1];
     updateDisplay();
 }
