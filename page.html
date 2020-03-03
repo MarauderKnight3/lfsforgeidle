@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Basic Incremental Game</title>
+    <link rel="stylesheet" type="text/css" href="page.css">
+    <script src="game.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body onload="initialize();">
+    <div id="page">
+        <h1 id="displayTitle">Waste Time Making Swords</h1>
+        <h1 class="general" style="text-align: center; color: #b10e16;">Waste your time making swords and buying forges
+            that don't do
+            anything.</h1>
+        <table style="margin: auto;">
+            <tr>
+                <td class="general" style="text-align: center; color: #39b8c9">Coins: </td>
+                <td id="money" class="number">error</td>
+            </tr>
+            <tr>
+                <td class="general" style="text-align: center; color: #2a9ead">Gross Income All Time: </td>
+                <td id="earnedSoFar" class="number">error</td>
+            </tr>
+            <tr>
+                <td class="general" style="text-align: center; color: #1d808d">Coins Per Second (CPS): </td>
+                <td id="entireCPS" class="number">error</td>
+            </tr>
+        </table>
+        <p onclick="javascript: gatherMoney();" class="buyButton"
+            style="margin: auto; margin-bottom: 20px; width: 175px; line-height: 60px;">Gather</p>
+        <div class="collapsible">Buildings</div>
+        <div class="content">
+            <table style="margin: auto;">
+                <tr>
+                    <td class="general2" style="color: #9962bb">Amount to buy: <input type="number" id="amountToBuy"
+                            placeholder="Amount..." value="1"></td>
+                </tr>
+            </table>
+            <table style="margin: auto;">
+                <!--To add another building, you MUST make a set replacing the number at the beginning of each ID with the next number. Also see the JS to specify its stats. E.g. 68name turns into 69name, and so on.-->
+                <!-- Forge 0 -->
+                <tr>
+                    <td>
+                        <div class="tooltipb">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="0CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="0totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="0ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="0name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="0owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltipb">
+                            <span class="tooltiptext" id="0cost">(Costs error)</span>
+                            <div onclick="buyBuilding(0)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 1 -->
+                <tr>
+                    <td>
+                        <div class="tooltipb">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="1CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="1totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="1ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="1name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="1owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="1cost">(Costs error)</span>
+                            <div onclick="buyBuilding(1)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 2 -->
+                <tr>
+                    <td>
+                        <div class="tooltipb">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="2CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="2totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="2ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="2name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="2owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="2cost">(Costs error)</span>
+                            <div onclick="buyBuilding(2)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 3 -->
+                <tr>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="3CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="3totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="3ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="3name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="3owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="3cost">(Costs error)</span>
+                            <div onclick="buyBuilding(3)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 4 -->
+                <tr>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="4CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="4totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="4ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="4name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="4owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="4cost">(Costs error)</span>
+                            <div onclick="buyBuilding(4)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 5 -->
+                <tr>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="5CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="5totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="5ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="5name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="5owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="5cost">(Costs error)</span>
+                            <div onclick="buyBuilding(5)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 6 -->
+                <tr>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="6CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="6totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="6ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="6name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="6owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="6cost">(Costs error)</span>
+                            <div onclick="buyBuilding(6)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 7 -->
+                <tr>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="7CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="7totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="7ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="7name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="7owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="7cost">(Costs error)</span>
+                            <div onclick="buyBuilding(7)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 8 -->
+                <tr>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="8CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="8totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="8ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="8name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="8owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="8cost">(Costs error)</span>
+                            <div onclick="buyBuilding(8)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Forge 9 -->
+                <tr>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext">
+                                <table>
+                                    <tr>
+                                        <td class="general2">CPS / Building:</td>
+                                        <td id="9CPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Total CPS:</td>
+                                        <td id="9totalCPS" class="number">error</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="general2">Earned so far:</td>
+                                        <td id="9ESF" class="number">error</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <div id="9name" class="general2">Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="general2">You have </td>
+                                <td id="9owned" class="number">error</td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div class="tooltip">
+                            <span class="tooltiptext" id="9cost">(Costs error)</span>
+                            <div onclick="buyBuilding(9)" class="buyButton">Buy</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
