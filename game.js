@@ -106,7 +106,7 @@ function getAmountToBuy() {
     return document.getElementById("amountToBuy").value;
 }
 
-function buildingsCanBuy(ID, amount = getAmountToBuy(), would = false) {
+function buildingsCanBuy(ID, amount, would = false) {
     var speculateCanBuy = 0;
     var speculateOwned = game.buildings[ID].owned;
     var totalCost = 0;
@@ -173,8 +173,8 @@ function tick() {
         game.buildings[i].ESF += game.buildings[i].owned * game.buildings[i].CPS / 40;
         game.entireCPS += game.buildings[i].owned * game.buildings[i].CPS;
     }
-    if (getAmountToBuy() > 1000000000000) {
-        document.getElementById("amountToBuy").value = "1000000000000";
+    if (getAmountToBuy() > 10000000000) {
+        document.getElementById("amountToBuy").value = "10000000000";
     }
     updateDisplay();
 }
@@ -189,9 +189,10 @@ function buyBuilding(ID) {
     if (getAmountToBuy() == 1) {
         document.getElementById("amountToBuy").value = 1;
     }
-    var k = buildingsCanBuy(ID);
-    game.money -= k[1];
-    game.buildings[ID].owned += k[0];
+    var cost = buildingsCanBuy(ID, getAmountToBuy())[1];
+    var amnt = buildingsCanBuy(ID, getAmountToBuy())[0];
+    game.money -= cost;
+    game.buildings[ID].owned += amnt;
     updateDisplay();
 }
 window.setInterval(function() {
