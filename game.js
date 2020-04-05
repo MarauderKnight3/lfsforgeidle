@@ -4,7 +4,7 @@ var game = {
     entireCPS: 0,
     coinsOnClick: 1,
     buildings: [{
-        name: "Wood Fire",
+        name: "Pit Fire",
         CPS: 0.2,
         ESF: 0,
         owned: 0,
@@ -58,7 +58,7 @@ var game = {
         owned: 0,
         cost: 1690000
     }, {
-        name: "Canned Beans",
+        name: "Chili",
         CPS: 1000,
         ESF: 0,
         owned: 0,
@@ -125,7 +125,7 @@ function buildingsCanBuy(ID, amount, would = false) {
         }
     }
     else {
-        for (i = amount; i != 0; i--) {
+        for (j = amount; j != 0; j--) {
             totalCost += calcBuildingCost(ID, speculateOwned);
             speculateOwned++;
             speculateCanBuy++;
@@ -138,23 +138,22 @@ function updateDisplay() {
     document.getElementById("money").textContent = Math.round(game.money);
     document.getElementById("earnedSoFar").textContent = Math.round(game.earnedSoFar);
     document.getElementById("entireCPS").textContent = toHundredth(game.entireCPS);
-    for (i = 0; i < game.buildings.length; i++) {
-        document.getElementById(i + "name").textContent = game.buildings[i].name;
-        document.getElementById(i + "cost").textContent = buildingsCanBuy(i, getAmountToBuy(), true)[1] + " (For " + buildingsCanBuy(i, getAmountToBuy(), true)[0] + ")";
-        document.getElementById(i + "owned").textContent = game.buildings[i].owned;
-        document.getElementById(i + "CPS").textContent = game.buildings[i].CPS;
-        document.getElementById(i + "totalCPS").textContent = toHundredth(game.buildings[i].CPS * game.buildings[i].owned);
-        document.getElementById(i + "ESF").textContent = Math.round(game.buildings[i].ESF);
+    for (k = 0; k < game.buildings.length; k++) {
+        document.getElementById(k + "name").textContent = game.buildings[k].name;
+        document.getElementById(k + "cost").textContent = buildingsCanBuy(k, getAmountToBuy(), true)[1] + " (For " + buildingsCanBuy(k, getAmountToBuy(), true)[0] + ")";
+        document.getElementById(k + "owned").textContent = game.buildings[k].owned;
+        document.getElementById(k + "CPS").textContent = game.buildings[k].CPS;
+        document.getElementById(k + "totalCPS").textContent = toHundredth(game.buildings[k].CPS * game.buildings[k].owned);
+        document.getElementById(k + "ESF").textContent = Math.round(game.buildings[k].ESF);
     }
 }
 
 function initialize() {
     var coll = document.getElementsByClassName("collapsible");
-    var colID;
     for (colID = 0; colID < coll.length; colID++) {
         coll[colID].addEventListener("click", function() {
-            classList.toggle("active");
-            var content = nextElementSibling;
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
             if (content.style.display == "block") {
                 content.style.display = "none";
             }
@@ -167,14 +166,14 @@ function initialize() {
 
 function tick() {
     game.entireCPS = 0;
-    for (i = 0; i < game.buildings.length; i++) {
-        game.money += game.buildings[i].owned * game.buildings[i].CPS / 40;
-        game.earnedSoFar += game.buildings[i].owned * game.buildings[i].CPS / 40;
-        game.buildings[i].ESF += game.buildings[i].owned * game.buildings[i].CPS / 40;
-        game.entireCPS += game.buildings[i].owned * game.buildings[i].CPS;
+    for (e = 0; e < game.buildings.length; e++) {
+        game.money += game.buildings[e].owned * game.buildings[e].CPS / 40;
+        game.earnedSoFar += game.buildings[e].owned * game.buildings[e].CPS / 40;
+        game.buildings[e].ESF += game.buildings[e].owned * game.buildings[e].CPS / 40;
+        game.entireCPS += game.buildings[e].owned * game.buildings[e].CPS;
     }
-    if (getAmountToBuy() > 10000000000) {
-        document.getElementById("amountToBuy").value = "10000000000";
+    if (getAmountToBuy() > 100000) {
+        document.getElementById("amountToBuy").value = "100000";
     }
     updateDisplay();
 }
